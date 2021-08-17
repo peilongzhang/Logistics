@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>LogisticsUI</name>
+    </assembly>
+    <members>
+        <member name="M:LogisticsUI.Controllers.AllocationController.Allocationshow(System.String,System.String)">
+            <summary>
+            角色功能
+            </summary>
+            <param name="UsersName"></param>
+            <param name="UsersPass"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LogisticsUI.Controllers.AllocationController.allocationCha(System.Int32)">
+            <summary>
+            查询上一级权限
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LogisticsUI.Controllers.JurisdictionController.Jurisdictionshow">
+            <summary>
+            权限显示
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:LogisticsUI.Controllers.JurisdictionController.JurisdictionCha(System.Int32)">
+            <summary>
+            权限查询
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LogisticsUI.Controllers.LoginController.LoginShow(System.String,System.String)">
+            <summary>
+            登录
+            </summary>
+            <param name="UsersName"></param>
+            <param name="UsersPass"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>
