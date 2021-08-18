@@ -40,5 +40,45 @@
             <param name="UsersPass"></param>
             <returns></returns>
         </member>
+        <member name="M:LogisticsUI.Controllers.VehicleController.Carshow">
+            <summary>
+            车辆管理显示
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:LogisticsUI.Controllers.VehicleController.CarCha(System.String)">
+            <summary>
+            显示车辆查询
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:LogisticsUI.Controllers.VehicleController.CarAdd(LogisticsModel.Vehicle)">
+            <summary>
+            车辆管理添加
+            </summary>
+            <param name="name"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LogisticsUI.Controllers.VehicleController.CarDel(System.Int32)">
+            <summary>
+            车辆管理删除
+            </summary>
+            <param name="vehicle"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LogisticsUI.Controllers.VehicleController.CarFan(System.Int32)">
+            <summary>
+            车辆管理反填
+            </summary>
+            <param name="name"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LogisticsUI.Controllers.VehicleController.CarUpd(LogisticsModel.Vehicle)">
+            <summary>
+            车辆管理修改
+            </summary>
+            <param name="vehicle"></param>
+            <returns></returns>
+        </member>
     </members>
 </doc>

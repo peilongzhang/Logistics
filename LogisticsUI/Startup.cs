@@ -18,6 +18,7 @@ using LogisticsLogin;
 using LogisticsModel;
 using System.Reflection;
 using System.IO;
+using Autofac;
 
 namespace LogisticsUI
 {
@@ -36,12 +37,13 @@ namespace LogisticsUI
             //数据库连接
             Lianjie.LianjieString = Configuration.GetConnectionString("default");
             //注入
-            services.AddTransient<ILogin,Login>();//登录
+            //services.AddTransient<ILogin,Login>();//登录
+            //services.AddTransient<IRoleFen, RoloFen>();//分配权限
+            //services.AddTransient<IjurisdictionS, jurisdictionS>();//权限
             services.AddTransient<Loginlogin>();//登录
-            services.AddTransient<IRoleFen, RoloFen>();//分配权限
-            services.AddTransient<Allocation>();//分配权限
-            services.AddTransient<IjurisdictionS, jurisdictionS>();//权限
+            services.AddTransient<Allocation>();//分配权限 
             services.AddTransient<JurisdictionJ>();//权限
+            services.AddTransient<Cars>();//车辆管理
             //跨域
             services.AddControllers();
 
@@ -100,5 +102,14 @@ namespace LogisticsUI
                 endpoints.MapControllers();
             });
         }
+
+
+        //Startup类中添加
+         public void ConfigureContainer(ContainerBuilder build)
+        {
+            var bllFilePath = System.IO.Path.Combine(AppContext.BaseDirectory, "LogisticsDAL.dll"); //DDal.dll是依赖注入的层
+            build.RegisterAssemblyTypes(Assembly.LoadFile(bllFilePath)).AsImplementedInterfaces();
+        }
+
     }
 }

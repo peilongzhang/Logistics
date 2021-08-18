@@ -17,7 +17,7 @@ namespace LogisticsDAL
          
         public int Add_Dapper(string sql, object obj = null)
         {
-            return conn.Execute(sql,new { obj});
+            return conn.Execute(sql,obj);
         }
 
         

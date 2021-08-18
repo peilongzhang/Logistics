@@ -46,7 +46,7 @@ namespace LogisticsLogin
         {
             try
             {
-                string sql = $"SELECT C.jurisdictionId,C.jurisdictionName,C.jurisdictionJID,C.jurisdictionLink FROM UsersRole A JOIN  roleMenu B ON A.UsersId=B.RoleIdid JOIN jurisdiction C ON C.jurisdictionId = B.jurisdictionid JOIN Users D on A.UsersId = D.UsersId WHERE C.jurisdictionJID=0 AND A.UsersId={id}";
+                string sql = $"SELECT C.jurisdictionId,C.jurisdictionName,C.jurisdictionJID,C.jurisdictionLink FROM UsersRole A JOIN  roleMenu B ON A.RoleId=B.RoleIdid JOIN jurisdiction C ON C.jurisdictionId = B.jurisdictionid JOIN Users D on A.UsersId = D.UsersId WHERE C.jurisdictionJID=0 AND A.UsersId={id}";
 
                 List<UsersRole> _roleMenu = IroleFen.GetT_Dapper(sql);
                 return _roleMenu;
