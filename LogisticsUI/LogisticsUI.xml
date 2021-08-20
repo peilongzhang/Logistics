@@ -40,6 +40,19 @@
             <param name="UsersPass"></param>
             <returns></returns>
         </member>
+        <member name="M:LogisticsUI.Controllers.OwnerRenController.OwnerRenshow">
+            <summary>
+            货主管理显示
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:LogisticsUI.Controllers.OwnerRenController.OwnerRenCha(System.String)">
+            <summary>
+            货主管理查询
+            </summary>
+            <param name="name"></param>
+            <returns></returns>
+        </member>
         <member name="M:LogisticsUI.Controllers.VehicleController.Carshow">
             <summary>
             车辆管理显示

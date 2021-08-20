@@ -7,10 +7,12 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using LogisticsLogin;
 using LogisticsModel;
+using Microsoft.AspNetCore.Authorization;
 
 namespace LogisticsUI.Controllers
 {
     [Route("api/[controller]")]
+    [Authorize]
     [ApiController]
     public class VehicleController : Controller
     {
@@ -25,6 +27,7 @@ namespace LogisticsUI.Controllers
         /// </summary>
         /// <returns></returns>
         [Route("Carshow")]
+        
         [HttpGet]
         public IActionResult Carshow()
         {

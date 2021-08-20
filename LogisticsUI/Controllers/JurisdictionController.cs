@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using LogisticsLogin;
 using LogisticsModel;
+using Microsoft.AspNetCore.Authorization;
 
 namespace LogisticsUI.Controllers
 {
@@ -25,6 +26,7 @@ namespace LogisticsUI.Controllers
         /// </summary>
         /// <returns></returns>
         [Route("Jurisdictionshow")]
+        [Authorize]
         [HttpGet]
         public IActionResult Jurisdictionshow()
         {

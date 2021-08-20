@@ -7,6 +7,11 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using LogisticsLogin;
 using LogisticsModel;
+using Microsoft.Extensions.Options;
+using System.Text;
+using System.Security.Claims;
+using Microsoft.IdentityModel.Tokens;
+using System.IdentityModel.Tokens.Jwt;
 
 namespace LogisticsUI.Controllers
 {
@@ -16,8 +21,10 @@ namespace LogisticsUI.Controllers
     public class LoginController : Controller
     {
         public Loginlogin Loginlogin;
-        public LoginController(Loginlogin _loginlogin)
+        private JwtConfig jwtconfig;
+        public LoginController(IOptions<JwtConfig> option, Loginlogin _loginlogin)
         {
+            jwtconfig = option.Value;
             Loginlogin = _loginlogin;
         }
         /// <summary>
@@ -34,8 +41,19 @@ namespace LogisticsUI.Controllers
             try
             {
                 Users _users = Loginlogin.LoginShow(UsersName, UsersPass);
-
-                return Ok( _users );
+                var claim = new Claim[]{
+            new Claim("UsersName", "lb")
+        };
+                var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtconfig.SigningKey));
+                var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+                var token = new JwtSecurityToken(
+                    issuer: jwtconfig.Issuer,
+                    audience: jwtconfig.Audience,
+                    claims: claim,
+                    notBefore: DateTime.Now,
+                    expires: DateTime.Now.AddSeconds(30),
+                    signingCredentials: creds);
+                return Ok(new { token = new JwtSecurityTokenHandler().WriteToken(token), UsersId = UsersName });
             }
             catch (Exception)
             {

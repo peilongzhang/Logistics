@@ -19,9 +19,21 @@ using LogisticsModel;
 using System.Reflection;
 using System.IO;
 using Autofac;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
+using Swashbuckle.AspNetCore.Filters;
 
 namespace LogisticsUI
 {
+    public class JwtConfig
+    {
+        public string Issuer { get; set; }
+
+        public string Audience { get; set; }
+
+        public string SigningKey { get; set; }
+    }
     public class Startup
     {
         public Startup(IConfiguration configuration)
@@ -44,7 +56,8 @@ namespace LogisticsUI
             services.AddTransient<Allocation>();//分配权限 
             services.AddTransient<JurisdictionJ>();//权限
             services.AddTransient<Cars>();//车辆管理
-            //跨域
+            services.AddTransient<Owners>();//货主管理
+            // 跨域
             services.AddControllers();
 
             services.AddCors(options => options.AddPolicy("cor",
@@ -56,23 +69,55 @@ namespace LogisticsUI
                   .AllowCredentials();
             }));
 
+            //jwt
+            var jwtconfig = Configuration.GetSection("Jwt").Get<JwtConfig>();
+            // JWT身份认证
+            services.AddAuthentication(option =>
+            {
+                option.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                option.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            })
+            .AddJwtBearer(option =>
+            {
+                option.RequireHttpsMetadata = false;
+                option.SaveToken = true;
+                option.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuerSigningKey = true,
+                    ValidateAudience = false,
+                    ValidIssuer = jwtconfig.Issuer,
+                    ValidAudience = jwtconfig.Audience,
+                    ValidateIssuer = false,
+                    ValidateLifetime = false,
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtconfig.SigningKey)),
+                    // 缓冲过期时间，总的有效时间等于这个时间加上jwt的过期时间，如果不配置，默认是5分钟
+                    ClockSkew = TimeSpan.FromSeconds(10)
+                };
+            });
+
+            services.AddOptions().Configure<JwtConfig>(Configuration.GetSection("Jwt"));
+
             //验证及配置
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
             services.AddSwaggerGen(c =>
             {
-                services.AddSwaggerGen(c =>
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "LogisticsManagementSystem_API", Version = "v1" });
+                //#region swagger用JWT验证
+                //开启权限小锁
+                c.OperationFilter<AddResponseHeadersFilter>();
+                c.OperationFilter<AppendAuthorizeToSummaryOperationFilter>();
+                //在header中添加token，传递到后台
+                c.OperationFilter<SecurityRequirementsOperationFilter>();
+                c.AddSecurityDefinition("oauth2", new OpenApiSecurityScheme
                 {
-                    c.SwaggerDoc("v1", new OpenApiInfo { Title = "LogisticsUI", Version = "v1", Description = "LogisticsUI" });
+                    Description = "JWT授权(数据将在请求头中进行传递)直接在下面框中输入Bearer {token}(注意两者之间是一个空格) \"",
+                    Name = "Authorization",//jwt默认的参数名称
+                    In = ParameterLocation.Header,//jwt默认存放Authorization信息的位置(请求头中)
+                    Type = SecuritySchemeType.ApiKey
                 });
-
-                // 为 Swagger 设置xml文档注释路径
-                var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
-                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
-                // 添加控制器层注释，true表示显示控制器注释
-                c.IncludeXmlComments(xmlPath, true);
-
+                // #endregion
             });
-            
+
             services.AddSession();
             services.AddControllersWithViews();
         }
@@ -95,12 +140,15 @@ namespace LogisticsUI
             //配置Cors跨域
             app.UseCors("cor");
 
+            app.UseAuthentication();
+            app.UseHttpsRedirection();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
             });
+           
         }
 
 
