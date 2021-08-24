@@ -97,5 +97,44 @@ namespace LogisticsLogin
                 throw;
             }
         }
+        /// <summary>
+        /// 反填
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+
+        public OwnerRen OwnerRenFan(int id)
+        {
+            try
+            {
+                string sql = $"select * from OwnerRen where OwnerRenId={id}";
+
+                OwnerRen _Owner = Iowner.GetT_Dapper(sql).FirstOrDefault();
+                return _Owner;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+        /// <summary>
+        /// 修改
+        /// </summary>
+        /// <param name="Ownerren"></param>
+        /// <returns></returns>
+        public int OwnerRenUpd(OwnerRen Ownerren)
+        {
+            try
+            {
+                string sql = $"update OwnerRen set OwnerRenName='{Ownerren.OwnerRenName}',OwnerRenPhone='{Ownerren.OwnerRenPhone}',OwnerRenCompany='{Ownerren.OwnerRenCompany}',OwnerRenDiZhi='{Ownerren.OwnerRenDiZhi}',OwnerReneffective='{Ownerren.OwnerReneffective}',OwnerRenImg='{Ownerren.OwnerRenImg}',OwnerRenRemark='{Ownerren.OwnerRenRemark}',OwnerRenDate='{Ownerren.OwnerRenDate}' where OwnerRenId='{Ownerren.OwnerRenId}'";
+
+                return Iowner.Add_Dapper(sql);
+
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
     }
 }

@@ -10,11 +10,10 @@ using LogisticsCommon;
 
 namespace LogisticsLogin
 {
+   
     public class Loginlogin:Login
     {
         MySqlDapperHelper Helper = new MySqlDapperHelper();
-
-
 
 
         public ILogin ILogin;

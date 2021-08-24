@@ -12,6 +12,7 @@ using System.Text;
 using System.Security.Claims;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
+using Microsoft.Extensions.Logging;
 
 namespace LogisticsUI.Controllers
 {
@@ -22,7 +23,7 @@ namespace LogisticsUI.Controllers
     {
         public Loginlogin Loginlogin;
         private JwtConfig jwtconfig;
-        public LoginController(IOptions<JwtConfig> option, Loginlogin _loginlogin)
+        public LoginController(IOptions<JwtConfig> option, Loginlogin _loginlogin, ILogger<LoginController> logger)
         {
             jwtconfig = option.Value;
             Loginlogin = _loginlogin;
@@ -40,7 +41,9 @@ namespace LogisticsUI.Controllers
             //异常处理
             try
             {
+                
                 Users _users = Loginlogin.LoginShow(UsersName, UsersPass);
+                //jwt
                 var claim = new Claim[]{
             new Claim("UsersName", "lb")
         };
@@ -53,6 +56,7 @@ namespace LogisticsUI.Controllers
                     notBefore: DateTime.Now,
                     expires: DateTime.Now.AddSeconds(30),
                     signingCredentials: creds);
+
                 return Ok(new { token = new JwtSecurityTokenHandler().WriteToken(token), UsersId = UsersName });
             }
             catch (Exception)

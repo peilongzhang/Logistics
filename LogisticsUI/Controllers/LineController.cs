@@ -12,28 +12,28 @@ namespace LogisticsUI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class OwnerRenController : Controller
+    public class LineController : Controller
     {
-        public Owners Owners;
-        public OwnerRenController(Owners _Owners)
+        public Lines lines;
+        public LineController(Lines _lines)
         {
-            Owners = _Owners;
+            lines = _lines;
 
         }
         /// <summary>
-        /// 货主管理显示
+        /// 显示
         /// </summary>
         /// <returns></returns>
-        [Route("OwnerRenshow")]
+        [Route("Lineshow")]
         [HttpGet]
-        public IActionResult OwnerRenshow()
+        public IActionResult Lineshow()
         {
             //异常处理-   
             try
             {
-                List<OwnerRen> ren = Owners.OwnerRenshow();
+                List<Line> line = lines.Lineshow();
 
-                return Ok(ren);
+                return Ok(line);
             }
             catch (Exception)
             {
@@ -41,41 +41,40 @@ namespace LogisticsUI.Controllers
             }
         }
         /// <summary>
-        /// 货主管理查询
+        /// 查询
         /// </summary>
         /// <param name="name"></param>
         /// <returns></returns>
-        [Route("OwnerRenCha")]
+        [Route("LineCha")]
         [HttpGet]
-        public IActionResult OwnerRenCha(string name)
+        public IActionResult LineCha(string name)
         {
             //异常处理-   
             try
             {
-                List<OwnerRen> ren = Owners.OwnerRenCha(name);
+                List<Line> line = lines.LineCha(name);
 
-                return Ok(ren);
+                return Ok(line);
             }
             catch (Exception)
             {
                 throw;
             }
         }
-
         /// <summary>
-        /// 货主管理添加
+        /// 添加
         /// </summary>
-        /// <param name="Ownerren"></param>
+        /// <param ></param>
         /// <returns></returns>
-        [Route("OwnerRenAdd")]
+        [Route("LineAdd")]
         [HttpPost]
-        public IActionResult OwnerRenAdd(OwnerRen Ownerren)
+        public IActionResult LineAdd(Line Line)
         {
             //异常处理-   
             try
             {
-                int car = Owners.OwnerRenAdd(Ownerren);
-                if (car > 0)
+                int line = lines.LineAdd(Line);
+                if (line > 0)
                 {
                     return Ok(new { msg = "添加成功" });
                 }
@@ -90,20 +89,15 @@ namespace LogisticsUI.Controllers
             }
         }
 
-        /// <summary>
-        /// 货主管理删除
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        [Route("OwnerRenDel")]
+        [Route("LineDel")]
         [HttpPost]
-        public IActionResult OwnerRenDel(int id)
+        public IActionResult LineDel(int id)
         {
             //异常处理-   
             try
             {
-                int car = Owners.OwnerRenDel(id);
-                if (car > 0)
+                int line = lines.LineDel(id);
+                if (line > 0)
                 {
                     return Ok(new { msg = "删除成功" });
                 }
@@ -119,40 +113,39 @@ namespace LogisticsUI.Controllers
         }
 
         /// <summary>
-        /// 货主管理反填
+        /// 反填
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        [Route("OwnerRenFan")]
+        [Route("LineFan")]
         [HttpGet]
-        public IActionResult OwnerRenFan(int id)
+        public IActionResult LineFan(int id)
         {
             //异常处理-   
             try
             {
-                OwnerRen car = Owners.OwnerRenFan(id);
-                return Ok(car);
+                Line line = lines.LineFan(id);
+                return Ok(line);
             }
             catch (Exception)
             {
                 throw;
             }
         }
-
         /// <summary>
-        /// 货主管理修改
+        /// 修改
         /// </summary>
         /// <param name="Ownerren"></param>
         /// <returns></returns>
-        [Route("OwnerRenUpd")]
+        [Route("LineUpd")]
         [HttpPost]
-        public IActionResult OwnerRenUpd(OwnerRen Ownerren)
+        public IActionResult LineUpd(Line Line)
         {
             //异常处理-   
             try
             {
-                int car = Owners.OwnerRenUpd(Ownerren);
-                if (car > 0)
+                int line = lines.LineUpd(Line);
+                if (line > 0)
                 {
                     return Ok(new { msg = "修改成功" });
                 }

@@ -12,28 +12,29 @@ namespace LogisticsUI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class OwnerRenController : Controller
+    public class OilCostController : Controller
     {
-        public Owners Owners;
-        public OwnerRenController(Owners _Owners)
+
+        public OilCosts Oilcost;
+        public OilCostController(OilCosts _Oilcost)
         {
-            Owners = _Owners;
+            Oilcost = _Oilcost;
 
         }
         /// <summary>
-        /// 货主管理显示
+        /// 显示
         /// </summary>
         /// <returns></returns>
-        [Route("OwnerRenshow")]
+        [Route("OilCostshow")]
         [HttpGet]
-        public IActionResult OwnerRenshow()
+        public IActionResult OilCostshow()
         {
             //异常处理-   
             try
             {
-                List<OwnerRen> ren = Owners.OwnerRenshow();
+                List<OilCost> oilcost = Oilcost.OilCostshow();
 
-                return Ok(ren);
+                return Ok(oilcost);
             }
             catch (Exception)
             {
@@ -41,41 +42,40 @@ namespace LogisticsUI.Controllers
             }
         }
         /// <summary>
-        /// 货主管理查询
+        /// 查询
         /// </summary>
         /// <param name="name"></param>
         /// <returns></returns>
-        [Route("OwnerRenCha")]
+        [Route("OilCostCha")]
         [HttpGet]
-        public IActionResult OwnerRenCha(string name)
+        public IActionResult OilCostCha(string name)
         {
             //异常处理-   
             try
             {
-                List<OwnerRen> ren = Owners.OwnerRenCha(name);
+                List<OilCost> oilcost = Oilcost.OilCostCha(name);
 
-                return Ok(ren);
+                return Ok(oilcost);
             }
             catch (Exception)
             {
                 throw;
             }
         }
-
         /// <summary>
-        /// 货主管理添加
+        /// 添加
         /// </summary>
-        /// <param name="Ownerren"></param>
+        /// <param ></param>
         /// <returns></returns>
-        [Route("OwnerRenAdd")]
+        [Route("OilCostAdd")]
         [HttpPost]
-        public IActionResult OwnerRenAdd(OwnerRen Ownerren)
+        public IActionResult OilCostAdd(OilCost OilCost)
         {
             //异常处理-   
             try
             {
-                int car = Owners.OwnerRenAdd(Ownerren);
-                if (car > 0)
+                int oilcost = Oilcost.OilCostAdd(OilCost);
+                if (oilcost > 0)
                 {
                     return Ok(new { msg = "添加成功" });
                 }
@@ -90,20 +90,15 @@ namespace LogisticsUI.Controllers
             }
         }
 
-        /// <summary>
-        /// 货主管理删除
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        [Route("OwnerRenDel")]
+        [Route("OilCostDel")]
         [HttpPost]
-        public IActionResult OwnerRenDel(int id)
+        public IActionResult OilCostDel(int id)
         {
             //异常处理-   
             try
             {
-                int car = Owners.OwnerRenDel(id);
-                if (car > 0)
+                int oilcost = Oilcost.OilCostDel(id);
+                if (oilcost > 0)
                 {
                     return Ok(new { msg = "删除成功" });
                 }
@@ -119,40 +114,39 @@ namespace LogisticsUI.Controllers
         }
 
         /// <summary>
-        /// 货主管理反填
+        /// 反填
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        [Route("OwnerRenFan")]
+        [Route("OilCostFan")]
         [HttpGet]
-        public IActionResult OwnerRenFan(int id)
+        public IActionResult OilCostFan(int id)
         {
             //异常处理-   
             try
             {
-                OwnerRen car = Owners.OwnerRenFan(id);
-                return Ok(car);
+                OilCost oilcost = Oilcost.OilCostFan(id);
+                return Ok(oilcost);
             }
             catch (Exception)
             {
                 throw;
             }
         }
-
         /// <summary>
-        /// 货主管理修改
+        /// 修改
         /// </summary>
         /// <param name="Ownerren"></param>
         /// <returns></returns>
-        [Route("OwnerRenUpd")]
+        [Route("OilCostUpd")]
         [HttpPost]
-        public IActionResult OwnerRenUpd(OwnerRen Ownerren)
+        public IActionResult OilCostUpd(OilCost OilCost)
         {
             //异常处理-   
             try
             {
-                int car = Owners.OwnerRenUpd(Ownerren);
-                if (car > 0)
+                int oilcost = Oilcost.OilCostUpd(OilCost);
+                if (oilcost > 0)
                 {
                     return Ok(new { msg = "修改成功" });
                 }

@@ -3,8 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
 using LogisticsLogin;
 using LogisticsModel;
 
@@ -12,28 +10,28 @@ namespace LogisticsUI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class OwnerRenController : Controller
+    public class OutsourcesController : Controller
     {
-        public Owners Owners;
-        public OwnerRenController(Owners _Owners)
+        public Outsources Outsources;
+        public OutsourcesController(Outsources _Outsources)
         {
-            Owners = _Owners;
+            Outsources = _Outsources;
 
         }
         /// <summary>
-        /// 货主管理显示
+        /// 显示
         /// </summary>
         /// <returns></returns>
-        [Route("OwnerRenshow")]
+        [Route("Outsourcesshow")]
         [HttpGet]
-        public IActionResult OwnerRenshow()
+        public IActionResult Outsourcesshow()
         {
             //异常处理-   
             try
             {
-                List<OwnerRen> ren = Owners.OwnerRenshow();
+                List<Outsource> Outsource = Outsources.Outsourcesshow();
 
-                return Ok(ren);
+                return Ok(Outsource);
             }
             catch (Exception)
             {
@@ -41,41 +39,40 @@ namespace LogisticsUI.Controllers
             }
         }
         /// <summary>
-        /// 货主管理查询
+        /// 查询
         /// </summary>
         /// <param name="name"></param>
         /// <returns></returns>
-        [Route("OwnerRenCha")]
+        [Route("OutsourcesCha")]
         [HttpGet]
-        public IActionResult OwnerRenCha(string name)
+        public IActionResult OutsourcesCha(string name)
         {
             //异常处理-   
             try
             {
-                List<OwnerRen> ren = Owners.OwnerRenCha(name);
-
-                return Ok(ren);
+                List<Outsource> Outsource = Outsources.OutsourcesCha(name);
+                 
+                return Ok(Outsource);
             }
             catch (Exception)
             {
                 throw;
             }
         }
-
         /// <summary>
-        /// 货主管理添加
+        /// 添加
         /// </summary>
-        /// <param name="Ownerren"></param>
+        /// <param ></param>
         /// <returns></returns>
-        [Route("OwnerRenAdd")]
+        [Route("OutsourcesAdd")]
         [HttpPost]
-        public IActionResult OwnerRenAdd(OwnerRen Ownerren)
+        public IActionResult OutsourcesAdd(Outsource outsource)
         {
             //异常处理-   
             try
             {
-                int car = Owners.OwnerRenAdd(Ownerren);
-                if (car > 0)
+                int Outsource = Outsources.OutsourcesAdd(outsource);
+                if (Outsource > 0)
                 {
                     return Ok(new { msg = "添加成功" });
                 }
@@ -90,20 +87,15 @@ namespace LogisticsUI.Controllers
             }
         }
 
-        /// <summary>
-        /// 货主管理删除
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        [Route("OwnerRenDel")]
+        [Route("OutsourcesDel")]
         [HttpPost]
-        public IActionResult OwnerRenDel(int id)
+        public IActionResult OutsourcesDel(int id)
         {
             //异常处理-   
             try
             {
-                int car = Owners.OwnerRenDel(id);
-                if (car > 0)
+                int Outsource = Outsources.OutsourcesDel(id);
+                if (Outsource > 0)
                 {
                     return Ok(new { msg = "删除成功" });
                 }
@@ -119,40 +111,39 @@ namespace LogisticsUI.Controllers
         }
 
         /// <summary>
-        /// 货主管理反填
+        /// 反填
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        [Route("OwnerRenFan")]
+        [Route("OutsourcesFan")]
         [HttpGet]
-        public IActionResult OwnerRenFan(int id)
+        public IActionResult OutsourcesFan(int id)
         {
             //异常处理-   
             try
             {
-                OwnerRen car = Owners.OwnerRenFan(id);
-                return Ok(car);
+                Outsource Outsource = Outsources.OutsourcesFan(id);
+                return Ok(Outsource);
             }
             catch (Exception)
             {
                 throw;
             }
         }
-
         /// <summary>
-        /// 货主管理修改
+        /// 修改
         /// </summary>
         /// <param name="Ownerren"></param>
         /// <returns></returns>
-        [Route("OwnerRenUpd")]
+        [Route("OutsourcesUpd")]
         [HttpPost]
-        public IActionResult OwnerRenUpd(OwnerRen Ownerren)
+        public IActionResult OutsourcesUpd(Outsource outsource)
         {
             //异常处理-   
             try
             {
-                int car = Owners.OwnerRenUpd(Ownerren);
-                if (car > 0)
+                int Outsource = Outsources.OutsourcesUpd(outsource);
+                if (Outsource > 0)
                 {
                     return Ok(new { msg = "修改成功" });
                 }

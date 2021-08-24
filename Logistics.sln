@@ -13,7 +13,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LogisticsCommon", "Logistic
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LogisticsLogin", "LogisticsLogin\LogisticsLogin.csproj", "{698186C9-4A87-44FC-92A0-C19F8D48F20B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogisticsUI", "LogisticsUI\LogisticsUI.csproj", "{47F1D086-194B-44C2-93E9-17CAC4962684}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LogisticsUI", "LogisticsUI\LogisticsUI.csproj", "{47F1D086-194B-44C2-93E9-17CAC4962684}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nlog.Framework", "Nlog.Framework\Nlog.Framework.csproj", "{2C9DD20E-3B4E-4967-A3E2-E7F0ED64C403}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{47F1D086-194B-44C2-93E9-17CAC4962684}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{47F1D086-194B-44C2-93E9-17CAC4962684}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{47F1D086-194B-44C2-93E9-17CAC4962684}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2C9DD20E-3B4E-4967-A3E2-E7F0ED64C403}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2C9DD20E-3B4E-4967-A3E2-E7F0ED64C403}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2C9DD20E-3B4E-4967-A3E2-E7F0ED64C403}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2C9DD20E-3B4E-4967-A3E2-E7F0ED64C403}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -23,6 +23,9 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Swashbuckle.AspNetCore.Filters;
+using LogisticsUI.Filter;
+using Microsoft.AspNetCore.Http;
+using Nlog.Framework.Log;
 
 namespace LogisticsUI
 {
@@ -46,9 +49,11 @@ namespace LogisticsUI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            //数据库连接
+             # region 数据库连接
             Lianjie.LianjieString = Configuration.GetConnectionString("default");
-            //注入
+            #endregion
+
+            # region 注入
             //services.AddTransient<ILogin,Login>();//登录
             //services.AddTransient<IRoleFen, RoloFen>();//分配权限
             //services.AddTransient<IjurisdictionS, jurisdictionS>();//权限
@@ -57,7 +62,13 @@ namespace LogisticsUI
             services.AddTransient<JurisdictionJ>();//权限
             services.AddTransient<Cars>();//车辆管理
             services.AddTransient<Owners>();//货主管理
-            // 跨域
+            services.AddTransient<PutIns>();//入库管理
+            services.AddTransient<Outsources>();//外协单位管理
+            services.AddTransient<OilCosts>();//油费管理
+            services.AddTransient<Lines>();//线路管理
+            #endregion
+
+            #region 跨域
             services.AddControllers();
 
             services.AddCors(options => options.AddPolicy("cor",
@@ -68,7 +79,9 @@ namespace LogisticsUI
                   .SetIsOriginAllowed(_ => true) // =AllowAnyOrigin()
                   .AllowCredentials();
             }));
+            #endregion
 
+            #region jwt配置
             //jwt
             var jwtconfig = Configuration.GetSection("Jwt").Get<JwtConfig>();
             // JWT身份认证
@@ -117,6 +130,17 @@ namespace LogisticsUI
                 });
                 // #endregion
             });
+            #endregion
+
+            #region 添加异常处理过滤器
+            //记录异常日志
+            services.AddControllers(options => options.Filters.Add(typeof(CustomerGlobalExceptionFilterAsync)));
+           
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddSingleton<INLogHelper, NLogHelper>();
+            // NLogHelper.LoadLogger();
+            services.AddControllers();
+            #endregion
 
             services.AddSession();
             services.AddControllersWithViews();

@@ -15,6 +15,7 @@
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="5.0.9" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="5.0.2" />
     <PackageReference Include="MySql.Data" Version="8.0.26" />
+    <PackageReference Include="NLog.Web.AspNetCore" Version="4.13.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
     <PackageReference Include="Swashbuckle.AspNetCore.Filters" Version="7.0.2" />
   </ItemGroup>
@@ -25,6 +26,13 @@
     <ProjectReference Include="..\LogisticsIDAL\LogisticsIDAL.csproj" />
     <ProjectReference Include="..\LogisticsLogin\LogisticsLogin.csproj" />
     <ProjectReference Include="..\LogisticsModel\LogisticsModel.csproj" />
+    <ProjectReference Include="..\Nlog.Framework\Nlog.Framework.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="XmlConfig\Nlog.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
 </Project>

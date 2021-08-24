@@ -32,12 +32,114 @@
             <param name="id"></param>
             <returns></returns>
         </member>
+        <member name="M:LogisticsUI.Controllers.LineController.Lineshow">
+            <summary>
+            显示
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:LogisticsUI.Controllers.LineController.LineCha(System.String)">
+            <summary>
+            查询
+            </summary>
+            <param name="name"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LogisticsUI.Controllers.LineController.LineAdd(LogisticsModel.Line)">
+            <summary>
+            添加
+            </summary>
+            <param ></param>
+            <returns></returns>
+        </member>
+        <member name="M:LogisticsUI.Controllers.LineController.LineFan(System.Int32)">
+            <summary>
+            反填
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LogisticsUI.Controllers.LineController.LineUpd(LogisticsModel.Line)">
+            <summary>
+            修改
+            </summary>
+            <param name="Ownerren"></param>
+            <returns></returns>
+        </member>
         <member name="M:LogisticsUI.Controllers.LoginController.LoginShow(System.String,System.String)">
             <summary>
             登录
             </summary>
             <param name="UsersName"></param>
             <param name="UsersPass"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LogisticsUI.Controllers.OilCostController.OilCostshow">
+            <summary>
+            显示
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:LogisticsUI.Controllers.OilCostController.OilCostCha(System.String)">
+            <summary>
+            查询
+            </summary>
+            <param name="name"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LogisticsUI.Controllers.OilCostController.OilCostAdd(LogisticsModel.OilCost)">
+            <summary>
+            添加
+            </summary>
+            <param ></param>
+            <returns></returns>
+        </member>
+        <member name="M:LogisticsUI.Controllers.OilCostController.OilCostFan(System.Int32)">
+            <summary>
+            反填
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LogisticsUI.Controllers.OilCostController.OilCostUpd(LogisticsModel.OilCost)">
+            <summary>
+            修改
+            </summary>
+            <param name="Ownerren"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LogisticsUI.Controllers.OutsourcesController.Outsourcesshow">
+            <summary>
+            显示
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:LogisticsUI.Controllers.OutsourcesController.OutsourcesCha(System.String)">
+            <summary>
+            查询
+            </summary>
+            <param name="name"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LogisticsUI.Controllers.OutsourcesController.OutsourcesAdd(LogisticsModel.Outsource)">
+            <summary>
+            添加
+            </summary>
+            <param ></param>
+            <returns></returns>
+        </member>
+        <member name="M:LogisticsUI.Controllers.OutsourcesController.OutsourcesFan(System.Int32)">
+            <summary>
+            反填
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LogisticsUI.Controllers.OutsourcesController.OutsourcesUpd(LogisticsModel.Outsource)">
+            <summary>
+            修改
+            </summary>
+            <param name="Ownerren"></param>
             <returns></returns>
         </member>
         <member name="M:LogisticsUI.Controllers.OwnerRenController.OwnerRenshow">
@@ -52,6 +154,52 @@
             </summary>
             <param name="name"></param>
             <returns></returns>
+        </member>
+        <member name="M:LogisticsUI.Controllers.OwnerRenController.OwnerRenAdd(LogisticsModel.OwnerRen)">
+            <summary>
+            货主管理添加
+            </summary>
+            <param name="Ownerren"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LogisticsUI.Controllers.OwnerRenController.OwnerRenDel(System.Int32)">
+            <summary>
+            货主管理删除
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LogisticsUI.Controllers.OwnerRenController.OwnerRenFan(System.Int32)">
+            <summary>
+            货主管理反填
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LogisticsUI.Controllers.OwnerRenController.OwnerRenUpd(LogisticsModel.OwnerRen)">
+            <summary>
+            货主管理修改
+            </summary>
+            <param name="Ownerren"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LogisticsUI.Controllers.PutInStorageController.PutInStorageshow">
+            <summary>
+            入库显示
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:LogisticsUI.Controllers.PutInStorageController.PutInStorageAdd(LogisticsModel.PutInStorage)">
+            <summary>
+            入库添加
+            </summary>
+            <param></param>
+            <returns></returns>
+        </member>
+        <member name="F:LogisticsUI.Controllers.ValuesController._logger">
+            <summary>
+            日志
+            </summary>
         </member>
         <member name="M:LogisticsUI.Controllers.VehicleController.Carshow">
             <summary>
@@ -91,6 +239,13 @@
             车辆管理修改
             </summary>
             <param name="vehicle"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LogisticsUI.Filter.CustomerGlobalExceptionFilterAsync.OnExceptionAsync(Microsoft.AspNetCore.Mvc.Filters.ExceptionContext)">
+            <summary>
+            重新OnExceptionAsync方法
+            </summary>
+            <param name="context">异常信息</param>
             <returns></returns>
         </member>
     </members>
